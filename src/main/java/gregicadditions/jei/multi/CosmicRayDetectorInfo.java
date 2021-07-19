@@ -6,10 +6,10 @@ import gregicadditions.item.components.EmitterCasing;
 import gregicadditions.item.components.FieldGenCasing;
 import gregicadditions.item.components.PumpCasing;
 import gregicadditions.item.components.SensorCasing;
+import gregicadditions.item.metal.MetalCasing2;
 import gregicadditions.jei.GAMultiblockShapeInfo;
 import gregicadditions.machines.GATileEntities;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.unification.material.Materials;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -17,7 +17,6 @@ import gregtech.integration.jei.multiblock.MultiblockInfoPage;
 import gregtech.integration.jei.multiblock.MultiblockShapeInfo;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import scala.tools.cmd.Meta;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,15 +42,16 @@ public class CosmicRayDetectorInfo extends MultiblockInfoPage {
                 .aisle("###XXXXXXXXX###", "###X###E###X###", "###X#######X###", "####X#####X####", "####X##F##X####", "####XxxxxxX####", "###xx#####xx###", "#xx#########xx#", "x#############x", "###############")
                 .aisle("####XXXXXXX####", "####X#####X####", "####X#####X####", "#####X###X#####", "#####X###X#####", "####XXxxxXX####", "###xxx###xxx###", "##x#########x##", "#x###########x#", "###############")
                 .aisle("#####XXXXX#####", "#####X###X#####", "#####X###X#####", "######XXX######", "######XXX######", "#####XXXXX#####", "####xxxxxxx####", "##xx#######xx##", "#x###########x#", "###############")
-                .aisle("######XXX######", "######fSe######", "######XXX######", "###############", "###############", "#######X#######", "#####xxxxx#####", "###xx#####xx###", "##x#########x##", "###############")
+                .aisle("######XMX######", "######fSe######", "######XXX######", "###############", "###############", "#######X#######", "#####xxxxx#####", "###xx#####xx###", "##x#########x##", "###############")
                 .aisle("###############", "###############", "###############", "###############", "###############", "###############", "#######x#######", "####xxx#xxx####", "###x#######x###", "###############")
                 .aisle("###############", "###############", "###############", "###############", "###############", "###############", "###############", "######xxx######", "####xx###xx####", "###############")
                 .aisle("###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "######xxx######", "###############")
                 .where('S', GATileEntities.COSMIC_RAY_DETECTOR, EnumFacing.SOUTH)
+                .where('M', GATileEntities.MAINTENANCE_HATCH[0], EnumFacing.SOUTH)
                 .where('e', GATileEntities.ENERGY_INPUT[0], EnumFacing.SOUTH)
                 .where('f', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH)
-                .where('X', GAMetaBlocks.METAL_CASING.get(GAMaterials.Quantum).getDefaultState())
-                .where('x', GAMetaBlocks.METAL_CASING.get(Materials.Tritanium).getDefaultState())
+                .where('X', GAMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.QUANTUM))
+                .where('x', GAMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.TRITANIUM))
                 .where('C', MetaBlocks.FRAMES.get(GAMaterials.BlackTitanium).getDefaultState())
                 .where('c', MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.SUPERCONDUCTOR))
                 .where('F', GAMetaBlocks.FIELD_GEN_CASING.getState(FieldGenCasing.CasingType.FIELD_GENERATOR_UHV))
@@ -67,5 +67,11 @@ public class CosmicRayDetectorInfo extends MultiblockInfoPage {
     @Override
     public String[] getDescription() {
         return new String[] {"Temporary Placeholder"};
+    }
+
+
+    @Override
+    public float getDefaultZoom() {
+        return 0.3f;
     }
 }

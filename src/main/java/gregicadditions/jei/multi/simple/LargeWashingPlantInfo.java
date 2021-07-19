@@ -6,6 +6,8 @@ import gregicadditions.item.GAMetaBlocks;
 import gregicadditions.machines.GATileEntities;
 import gregicadditions.machines.multi.simple.TileEntityLargeWashingPlant;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.common.blocks.BlockBoilerCasing;
+import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.integration.jei.multiblock.MultiblockInfoPage;
 import gregtech.integration.jei.multiblock.MultiblockShapeInfo;
@@ -26,20 +28,21 @@ public class LargeWashingPlantInfo extends MultiblockInfoPage {
 		ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
 			shapeInfo.add(MultiblockShapeInfo.builder()
 					.aisle("XXXXX", "XXXXX", "XXXXX")
-					.aisle("XXXXX", "X###X", "X###X")
-					.aisle("XXXXX", "X###X", "X###X")
-					.aisle("XXXXX", "X###X", "X###X")
-					.aisle("XXXXX", "X###X", "X###X")
-					.aisle("XXXXX", "X###X", "X###X")
-					.aisle("IOMEX", "XXSXX", "XXXXX")
+					.aisle("XXXXX", "XP#PX", "X###X")
+					.aisle("XXXXX", "XP#PX", "X###X")
+					.aisle("XXXXX", "XP#PX", "X###X")
+					.aisle("XXXXX", "XP#PX", "X###X")
+					.aisle("XXXXX", "XP#PX", "X###X")
+					.aisle("IOMEX", "XHSXX", "XXXXX")
 					.where('E', MetaTileEntities.ENERGY_INPUT_HATCH[GAValues.HV], EnumFacing.WEST)
 					.where('S', GATileEntities.LARGE_WASHING_PLANT, EnumFacing.SOUTH)
-					.where('X', GAMetaBlocks.getMetalCasingBlockState(TileEntityLargeWashingPlant.casingMaterial))
+					.where('X', TileEntityLargeWashingPlant.casingState)
+					.where('H', GATileEntities.MAINTENANCE_HATCH[0], EnumFacing.SOUTH)
 					.where('#', Blocks.WATER.getDefaultState())
 					.where('I', MetaTileEntities.ITEM_IMPORT_BUS[GAValues.LV], EnumFacing.WEST)
 					.where('O', MetaTileEntities.ITEM_EXPORT_BUS[GAValues.LV], EnumFacing.WEST)
 					.where('M', GAMetaBlocks.MOTOR_CASING.getDefaultState())
-
+					.where('P', MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE))
 					.build());
 
 
@@ -49,5 +52,10 @@ public class LargeWashingPlantInfo extends MultiblockInfoPage {
 	@Override
 	public String[] getDescription() {
 		return new String[]{"Temporary Placeholder"};
+	}
+
+	@Override
+	public float getDefaultZoom() {
+		return 0.7f;
 	}
 }

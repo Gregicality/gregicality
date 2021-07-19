@@ -1,5 +1,9 @@
 package gregicadditions;
 
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.machines.FuelRecipeMap;
+import gregtech.api.render.ICubeRenderer;
+import gregtech.api.render.Textures;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.unification.Element;
 import gregtech.api.unification.material.MaterialIconType;
@@ -11,6 +15,10 @@ import gregtech.api.unification.material.type.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.MetaFluids;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.multi.electric.generator.MetaTileEntityLargeTurbine;
+import net.minecraft.block.state.IBlockState;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.lang.reflect.Field;
@@ -95,7 +103,7 @@ public class GAEnums {
 
     }
 
-    public static void preInit() {
+    public static void onConstruction() {
         EnumHelper.addEnum(Element.class, "Nt",
                 new Class[]{long.class, long.class, long.class, String.class, String.class, boolean.class},
                 0L, 5000L, -1L, null, "NEUTRONIUM", false);
@@ -149,6 +157,19 @@ public class GAEnums {
             OrePrefix.valueOf("orePure" + stoneTypes[i]).addSecondaryMaterial(new MaterialStack(secondaryMaterials[i], OrePrefix.dust.materialAmount));
             PURE_ORES.add(OrePrefix.valueOf("orePure" + stoneTypes[i]));
         }
+    }
+
+    public static void preInit() {
+        // Turbine Overrides
+        EnumHelper.addEnum(MetaTileEntityLargeTurbine.TurbineType.class, "STEAM_OVERRIDE",
+                new Class[]{FuelRecipeMap.class, IBlockState.class, ICubeRenderer.class, boolean.class},
+                RecipeMaps.STEAM_TURBINE_FUELS, MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID), Textures.SOLID_STEEL_CASING, true);
+        EnumHelper.addEnum(MetaTileEntityLargeTurbine.TurbineType.class, "GAS_OVERRIDE",
+                new Class[]{FuelRecipeMap.class, IBlockState.class, ICubeRenderer.class, boolean.class},
+                RecipeMaps.GAS_TURBINE_FUELS, MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN), Textures.CLEAN_STAINLESS_STEEL_CASING, false);
+        EnumHelper.addEnum(MetaTileEntityLargeTurbine.TurbineType.class, "PLASMA_OVERRIDE",
+                new Class[]{FuelRecipeMap.class, IBlockState.class, ICubeRenderer.class, boolean.class},
+                RecipeMaps.PLASMA_GENERATOR_FUELS, MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.TUNGSTENSTEEL_ROBUST), Textures.ROBUST_TUNGSTENSTEEL_CASING, true);
     }
 
     /**

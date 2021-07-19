@@ -20,7 +20,7 @@ import static gregtech.api.unification.material.Materials.Naquadria;
 public class HyperReactor2Info extends MultiblockInfoPage {
     @Override
     public MultiblockControllerBase getController() {
-        return GATileEntities.HYPER_REACTOR_UHV;
+        return GATileEntities.HYPER_REACTOR_II;
     }
 
     @Override
@@ -40,8 +40,9 @@ public class HyperReactor2Info extends MultiblockInfoPage {
                 .aisle("##CCC#####CCC##", "#C##C#####C##C#", "##CCC#####CCC##")
                 .aisle("###CCCCCCCCC###", "##C##CCCCC##C##", "###CCCCCCCCC###")
                 .aisle("####CCCCCCC####", "###CC#####CC###", "####CCCCCCC####")
-                .aisle("#######C#######", "#####CfSCC#####", "#######C#######")
-                .where('S', GATileEntities.HYPER_REACTOR_UHV, EnumFacing.SOUTH)
+                .aisle("#######M#######", "#####CfSCC#####", "#######C#######")
+                .where('S', GATileEntities.HYPER_REACTOR_II, EnumFacing.SOUTH)
+                .where('M', GATileEntities.MAINTENANCE_HATCH[0], EnumFacing.SOUTH)
                 .where('C', GAMetaBlocks.REACTOR_CASING.getState(GAReactorCasing.CasingType.HYPER_CASING))
                 .where('f', MetaTileEntities.FLUID_IMPORT_HATCH[4], EnumFacing.SOUTH)
                 .where('E', MetaTileEntities.ENERGY_OUTPUT_HATCH[8], EnumFacing.NORTH)
@@ -54,5 +55,11 @@ public class HyperReactor2Info extends MultiblockInfoPage {
     @Override
     public String[] getDescription() {
         return new String[] {"Temporary Placeholder"};
+    }
+
+
+    @Override
+    public float getDefaultZoom() {
+        return 0.4f;
     }
 }

@@ -25,12 +25,13 @@ public class LargeMaceratorInfo extends MultiblockInfoPage {
 	public List<MultiblockShapeInfo> getMatchingShapes() {
 		ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
 			shapeInfo.add(MultiblockShapeInfo.builder()
-					.aisle("XXX", "XXX", "XXX", "XXX", "XXX")
-					.aisle("XXX", "XMX", "X#X", "XPX", "XXX")
-					.aisle("IOE", "XSX", "XXX", "XXX", "XXX")
+					.aisle("XXX", "XXX","XXX","XXX", "XXX", "XXX")
+					.aisle("XXX", "XMX","X#X","XPX", "X#X", "XXX")
+					.aisle("XSX", "XHX","XEX","XIX", "XOX", "XXX")
 					.where('E', MetaTileEntities.ENERGY_INPUT_HATCH[GAValues.HV], EnumFacing.SOUTH)
 					.where('S', GATileEntities.LARGE_MACERATOR, EnumFacing.SOUTH)
-					.where('X', GAMetaBlocks.getMetalCasingBlockState(TileEntityLargeMacerator.casingMaterial))
+					.where('H', GATileEntities.MAINTENANCE_HATCH[0], EnumFacing.SOUTH)
+					.where('X', TileEntityLargeMacerator.casingState)
 					.where('#', Blocks.AIR.getDefaultState())
 					.where('I', MetaTileEntities.ITEM_IMPORT_BUS[GAValues.LV], EnumFacing.SOUTH)
 					.where('O', MetaTileEntities.ITEM_EXPORT_BUS[GAValues.LV], EnumFacing.SOUTH)
@@ -45,5 +46,10 @@ public class LargeMaceratorInfo extends MultiblockInfoPage {
 	@Override
 	public String[] getDescription() {
 		return new String[]{"Temporary Placeholder"};
+	}
+
+	@Override
+	public float getDefaultZoom() {
+		return 0.7f;
 	}
 }

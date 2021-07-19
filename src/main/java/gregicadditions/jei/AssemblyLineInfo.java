@@ -6,7 +6,7 @@ import gregicadditions.item.GATransparentCasing;
 import gregicadditions.machines.GATileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.unification.material.Materials;
+import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -45,7 +45,7 @@ public class AssemblyLineInfo extends MultiblockInfoPage {
 			}
 			builder.aisle("CIC", "RTR", "GSG", "#Y#")
 					.where('S', GATileEntities.ASSEMBLY_LINE, EnumFacing.SOUTH)
-					.where('C', GAMetaBlocks.getMetalCasingBlockState(Materials.Steel))
+					.where('C', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
 					.where('F', MetaTileEntities.FLUID_IMPORT_HATCH[4], EnumFacing.WEST)
 					.where('f', MetaTileEntities.FLUID_IMPORT_HATCH[4], EnumFacing.EAST)
 					.where('O', MetaTileEntities.ITEM_EXPORT_BUS[4], EnumFacing.DOWN)
@@ -54,7 +54,7 @@ public class AssemblyLineInfo extends MultiblockInfoPage {
 					.where('G', MetaBlocks.MUTLIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING))
 					.where('A', MetaBlocks.MUTLIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLER_CASING))
 					.where('R', GAMetaBlocks.TRANSPARENT_CASING.getState(GATransparentCasing.CasingType.REINFORCED_GLASS))
-					.where('T', GAMetaBlocks.MUTLIBLOCK_CASING.getState(GAMultiblockCasing.CasingType.TUNGSTENSTEEL_GEARBOX_CASING))
+					.where('T', GAMetaBlocks.MUTLIBLOCK_CASING.getState(GAMultiblockCasing.CasingType.ASSEMBLY_LINE_CASING))
 					.where('#', Blocks.AIR.getDefaultState());
 			shapes.add(builder.build());
 		}
